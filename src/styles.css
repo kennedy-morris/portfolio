@@ -74,10 +74,6 @@ a:hover { color: var(--green-hover); text-decoration-thickness: 2px; }
   font-weight: 600; color: var(--cream);
   text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.75rem; margin-right: 8px;
 }
-.currently .label::before {
-  content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%;
-  background: var(--gold); margin-right: 8px; vertical-align: 1px;
-}
 .hero-links { margin-top: 36px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
 .hero .text-link { color: var(--mint); }
 .hero .text-link:hover { color: var(--cream); }

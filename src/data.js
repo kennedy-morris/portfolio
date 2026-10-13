@@ -5,7 +5,7 @@
 export const profile = {
   name: 'Kennedy Morris',
   intro:
-    "I'm a first-year Management Engineering student at the University of Waterloo. I like building spreadsheets and small tools that help people keep track of things, and I want to get better at using data to decide what to build.",
+    "I'm a first-year Management Engineering student at the University of Waterloo. I build spreadsheet tools that help teams organize information and make better decisions, and I'm developing my skills in data analytics and product management.",
   lookingFor: "Looking for a Summer 2027 co-op in data analytics or product.",
   // Update this each term.
   currently: 'In 1A at Waterloo, learning Python in MSE 121 and building my first projects for this site.',
