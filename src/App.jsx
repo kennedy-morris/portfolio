@@ -1,14 +1,21 @@
-import { profile, skills, awards, projects, contact } from './data.js';
+import { profile, skills, awards, timeline, projects, contact } from './data.js';
 
-function Nav() {
-  const links = ['About', 'Projects', 'Résumé', 'Contact'];
+/* global __BUILD_DATE__ */
+const updated = new Date(__BUILD_DATE__).toLocaleDateString('en-CA', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+function Header() {
   return (
-    <header className="nav">
-      <a href="#top" className="logo">KM<span>.</span></a>
-      <nav>
-        {links.map((l) => (
-          <a key={l} href={`#${l.toLowerCase().replace(/é/g, 'e')}`}>{l}</a>
-        ))}
+    <header className="site-header">
+      <a href="#top" className="wordmark">Kennedy Morris</a>
+      <nav aria-label="Main">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
       </nav>
     </header>
   );
@@ -17,89 +24,106 @@ function Nav() {
 function Hero() {
   return (
     <section className="hero" id="top">
-      <p className="eyebrow">{profile.program}</p>
-      <h1>
-        Hi, I'm <span className="accent">{profile.name.split(' ')[0]}</span>.
-      </h1>
-      <p className="lede">{profile.headline}</p>
-      <div className="hero-actions">
-        <a className="btn primary" href="#projects">See my work →</a>
-        <a className="btn ghost" href="#contact">Get in touch</a>
+      <div className="hero-inner">
+        <h1>Hi, I'm Kennedy.</h1>
+        <p className="intro">{profile.intro}</p>
+        <p className="looking">{profile.lookingFor}</p>
+        <p className="currently">
+          <span className="label">Currently</span> {profile.currently}
+        </p>
+        <div className="hero-links">
+          {contact.hasResume && (
+            <a className="btn" href="/resume.pdf" target="_blank" rel="noreferrer">Read my résumé</a>
+          )}
+          <a className="text-link" href={`mailto:${contact.email}`}>{contact.email}</a>
+        </div>
       </div>
-      <p className="status"><span className="dot" /> {profile.lookingFor}</p>
+    </section>
+  );
+}
+
+function Section({ id, label, children, wide = false }) {
+  return (
+    <section id={id} className={`section ${wide ? 'wide' : ''}`}>
+      <h2 className="section-label">{label}</h2>
+      <div className="section-body">{children}</div>
     </section>
   );
 }
 
 function About() {
   return (
-    <section id="about" className="section">
-      <h2><span className="num">01</span> About</h2>
-      <div className="about-grid">
-        <div>
-          {profile.about.map((p, i) => <p key={i}>{p}</p>)}
-          <div className="chips">
-            {profile.interests.map((t) => <span key={t} className="chip">{t}</span>)}
+    <Section id="about" label="About">
+      {profile.about.map((p, i) => <p key={i}>{p}</p>)}
+      <dl className="skills">
+        {skills.map((s) => (
+          <div key={s.group}>
+            <dt>{s.group}</dt>
+            <dd>{s.items}</dd>
           </div>
-        </div>
-        <div className="skills">
-          {skills.map((s) => (
-            <div key={s.group} className="skill-group">
-              <h3>{s.group}</h3>
-              <ul>{s.items.map((i) => <li key={i}>{i}</li>)}</ul>
-            </div>
-          ))}
-          <div className="skill-group">
-            <h3>Awards</h3>
-            <ul className="awards">{awards.map((a) => <li key={a}>🏆 {a}</li>)}</ul>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ProjectCard({ p, i }) {
-  return (
-    <article className={`card ${p.placeholder ? 'placeholder' : ''}`}>
-      <div className="card-top">
-        <span className="card-num">{String(i + 1).padStart(2, '0')}</span>
-        {p.placeholder && <span className="soon">Coming soon</span>}
-      </div>
-      <h3>{p.title}</h3>
-      <p>{p.summary}</p>
-      {p.result && <p className="result">{p.result}</p>}
-      {p.tags?.length > 0 && <div className="tags">{p.tags.map((t) => <span key={t}>{t}</span>)}</div>}
-      <div className="card-links">
-        {p.links?.github && <a href={p.links.github} target="_blank" rel="noreferrer">Code ↗</a>}
-        {p.links?.demo && <a href={p.links.demo} target="_blank" rel="noreferrer">Live ↗</a>}
-      </div>
-    </article>
+        ))}
+      </dl>
+      <h3 className="minor">Awards</h3>
+      <ul className="awards">
+        {awards.map((a) => (
+          <li key={a.name}><strong>{a.name}</strong> <span>{a.detail}</span></li>
+        ))}
+      </ul>
+    </Section>
   );
 }
 
 function Projects() {
   return (
-    <section id="projects" className="section">
-      <h2><span className="num">02</span> Projects</h2>
-      <div className="cards">
-        {projects.map((p, i) => <ProjectCard key={i} p={p} i={i} />)}
-      </div>
-    </section>
+    <Section id="projects" label="Projects" wide>
+      <p className="note">I'm working on new projects this term. They'll show up here as I finish them.</p>
+      <ol className="project-list">
+        {projects.map((p, i) => (
+          <li key={i} className={p.placeholder ? 'placeholder' : ''}>
+            <div className="project-head">
+              <h3>{p.title}</h3>
+              {p.placeholder && <span className="soon">Coming soon</span>}
+            </div>
+            <p>{p.summary}</p>
+            {p.result && <p className="result">{p.result}</p>}
+            {p.tags?.length > 0 && <p className="tags">{p.tags.join(' · ')}</p>}
+            {(p.links?.github || p.links?.demo) && (
+              <p className="project-links">
+                {p.links.github && <a href={p.links.github} target="_blank" rel="noreferrer">Code</a>}
+                {p.links.demo && <a href={p.links.demo} target="_blank" rel="noreferrer">Live site</a>}
+              </p>
+            )}
+          </li>
+        ))}
+      </ol>
+    </Section>
   );
 }
 
-function Resume() {
+function Experience() {
   return (
-    <section id="resume" className="section resume">
-      <h2><span className="num">03</span> Résumé</h2>
-      <div className="resume-box">
-        <p>Want the one-page version? Grab my résumé below.</p>
-        {contact.hasResume ? (
-          <a className="btn primary" href="/resume.pdf" target="_blank" rel="noreferrer">Download résumé (PDF)</a>
-        ) : (
-          <span className="btn disabled">Résumé coming soon</span>
-        )}
+    <Section id="experience" label="Experience">
+      <ol className="timeline">
+        {timeline.map((t) => (
+          <li key={t.title}>
+            <p className="when">{t.when}</p>
+            <h3>{t.title}</h3>
+            <p className="org">{t.org}</p>
+            <p>{t.text}</p>
+          </li>
+        ))}
+      </ol>
+    </Section>
+  );
+}
+
+function ResumeBand() {
+  if (!contact.hasResume) return null;
+  return (
+    <section className="band" aria-label="Résumé">
+      <div className="band-inner">
+        <p>The one-page version, if you'd rather read it that way.</p>
+        <a className="btn light" href="/resume.pdf" target="_blank" rel="noreferrer">Download résumé (PDF)</a>
       </div>
     </section>
   );
@@ -107,30 +131,35 @@ function Resume() {
 
 function Contact() {
   return (
-    <section id="contact" className="section contact">
-      <h2><span className="num">04</span> Contact</h2>
-      <p className="big">Let's build something.</p>
-      <div className="contact-links">
-        {contact.email && <a href={`mailto:${contact.email}`}>Email</a>}
-        {contact.linkedin && <a href={contact.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>}
-        <a href={contact.github} target="_blank" rel="noreferrer">GitHub</a>
-      </div>
-    </section>
+    <Section id="contact" label="Contact">
+      <p className="contact-line">
+        Email is the best way to reach me: <a href={`mailto:${contact.email}`}>{contact.email}</a>.
+      </p>
+      <p>
+        I'm also on <a href={contact.linkedin} target="_blank" rel="noreferrer">LinkedIn</a> and{' '}
+        <a href={contact.github} target="_blank" rel="noreferrer">GitHub</a>.
+      </p>
+    </Section>
   );
 }
 
 export default function App() {
   return (
     <>
-      <Nav />
-      <main>
+      <a href="#main" className="skip">Skip to content</a>
+      <Header />
+      <main id="main">
         <Hero />
         <About />
         <Projects />
-        <Resume />
+        <Experience />
+        <ResumeBand />
         <Contact />
       </main>
-      <footer>© {new Date().getFullYear()} {profile.name} · Built with React</footer>
+      <footer>
+        <p>Last updated {updated}.</p>
+        <p>Made with React, hosted on Cloudflare.</p>
+      </footer>
     </>
   );
 }

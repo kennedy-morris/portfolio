@@ -1,30 +1,58 @@
 // ─────────────────────────────────────────────────────────────
 //  EDIT THIS FILE to update everything on the site.
-//  Anything marked TODO is a placeholder waiting for your details.
 // ─────────────────────────────────────────────────────────────
 
 export const profile = {
   name: 'Kennedy Morris',
-  headline: 'I turn messy data into clear decisions — and ideas into products.',
-  program: 'Management Engineering (Co-op) · University of Waterloo',
-  lookingFor: 'Seeking a Summer 2027 co-op in data analytics or product management.',
+  intro:
+    "I'm a first-year Management Engineering student at the University of Waterloo. I like building spreadsheets and small tools that help people keep track of things, and I want to get better at using data to decide what to build.",
+  lookingFor: "Looking for a Summer 2027 co-op in data analytics or product.",
+  // Update this each term.
+  currently: 'In 1A at Waterloo, learning Python in MSE 121 and building my first projects for this site.',
   about: [
-    "I'm a first-year Management Engineering student at the University of Waterloo, where I sit at the intersection of engineering, data and business.",
-    "I'm most interested in data analytics and product management — figuring out what the numbers are really saying, and using that to build things people actually want.",
+    "Before university I spent two summers doing admin and operations at Innovative Rhythm Dance Studios. I kept the enrollment records for 100 to 250 students in Excel and updated schedules, instructors and pricing whenever registration changed. That work showed me how much a well-organized sheet helps the people making decisions.",
+    "I've also led a dance program at a week-long leadership camp, where I planned activities for over 100 campers with a team of six and trained five new instructors.",
+    "At Waterloo I'm most interested in data analytics and product management. I'm aiming for a co-op where I can work with real data and see how a product team decides what to build.",
   ],
-  // TODO: add hobbies, clubs or teams, e.g. 'Member of Waterloo Data Science Club'
-  interests: ['Data analytics', 'Product management', 'Dashboards & visualization', 'Building side projects'],
 };
 
 export const skills = [
-  { group: 'Data & Spreadsheets', items: ['SQL', 'Excel', 'Google Sheets', 'Power BI'] },
-  { group: 'Programming', items: ['Python', 'C++'] },
-  { group: 'Product & Tools', items: ['Figma', 'Microsoft Office', 'Google Workspace'] },
+  { group: 'Spreadsheets', items: 'Excel (VLOOKUP, HLOOKUP, formulas, charts), Google Sheets (QUERY, data validation)' },
+  { group: 'Code', items: 'Python, SQL, C++' },
+  { group: 'Tools', items: 'Power BI, Figma, Microsoft Office, Google Workspace' },
 ];
 
 export const awards = [
-  'Isabel Farrar Entrance Scholarship',
-  'University of Waterloo Entrance Scholarship (95%+ admission average)',
+  { name: 'Isabel Farrar Entrance Scholarship', detail: '$4,000, for incoming Engineering and Math students' },
+  { name: 'University of Waterloo Entrance Scholarship', detail: '$2,000, for a 95%+ admission average' },
+];
+
+// Newest first.
+export const timeline = [
+  {
+    when: 'Sept 2026',
+    title: 'Hiring Process Analysis Tool',
+    org: 'MSE 100, University of Waterloo',
+    text: 'An Excel tool that tracks applicants through each hiring stage, using lookups and formulas to keep candidate evaluations consistent.',
+  },
+  {
+    when: 'Summers 2025 and 2026',
+    title: 'Administrative & Operations Assistant',
+    org: 'Innovative Rhythm Dance Studios',
+    text: 'Kept enrollment records for 100 to 250 students and updated schedules, instructors and pricing during registration. Also taught children’s dance classes.',
+  },
+  {
+    when: 'July 2025',
+    title: 'Legal Research Database',
+    org: 'Freelance project for an immigration law office',
+    text: 'A searchable Google Sheets database of legal precedents, with dropdowns and QUERY functions to find case citations quickly. Delivered in under 10 hours.',
+  },
+  {
+    when: 'Sept 2024 and 2025',
+    title: 'Senior Instructor & Co-Councillor of Dance',
+    org: 'Leadership Overnight Camp',
+    text: 'Led a team of 6 running a week-long dance program for 100+ campers, and trained 5 instructors.',
+  },
 ];
 
 // Projects — these are placeholders for now.
@@ -37,9 +65,9 @@ export const awards = [
 //   links: { github: 'https://github.com/...', demo: 'https://...' },
 // },
 export const projects = [
-  { title: 'Project in progress', summary: 'Something new is being built here. Check back soon.', tags: [], result: '', links: {}, placeholder: true },
-  { title: 'Project in progress', summary: 'Something new is being built here. Check back soon.', tags: [], result: '', links: {}, placeholder: true },
-  { title: 'Project in progress', summary: 'Something new is being built here. Check back soon.', tags: [], result: '', links: {}, placeholder: true },
+  { title: 'Project in progress', summary: "I'm building this one now. Check back soon.", tags: [], result: '', links: {}, placeholder: true },
+  { title: 'Project in progress', summary: "I'm building this one now. Check back soon.", tags: [], result: '', links: {}, placeholder: true },
+  { title: 'Project in progress', summary: "I'm building this one now. Check back soon.", tags: [], result: '', links: {}, placeholder: true },
 ];
 
 export const contact = {
