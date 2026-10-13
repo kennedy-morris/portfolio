@@ -135,6 +135,14 @@ a:hover { color: var(--green-hover); text-decoration-thickness: 2px; }
 }
 .project-list li:not(.placeholder):hover { border-color: var(--green); transform: translateY(-2px); }
 .project-list li.placeholder { background: transparent; border: 1.5px dashed #9db3a3; }
+.project-list li.featured {
+  grid-column: 1 / -1;
+  display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 24px; align-items: start; padding: 0; overflow: hidden;
+}
+.project-list li.featured .project-text { padding: 22px 24px 22px 0; }
+.project-image { display: block; border-right: 1px solid var(--rule); background: var(--cream); }
+.project-image img { display: block; width: 100%; height: auto; }
 .project-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 6px; }
 .soon { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--green); white-space: nowrap; }
 .project-list p { color: var(--muted); font-size: 0.95rem; }
@@ -181,6 +189,9 @@ footer {
   .section-label { margin-bottom: 18px; padding-top: 0; }
   #projects { margin-top: 32px; padding-top: 48px; padding-bottom: 56px; }
   .skills > div { grid-template-columns: 1fr; gap: 2px; }
+  .project-list li.featured { grid-template-columns: 1fr; gap: 0; }
+  .project-list li.featured .project-text { padding: 18px 20px 20px; }
+  .project-image { border-right: none; border-bottom: 1px solid var(--rule); }
   .site-header nav { gap: 16px; }
 }
 

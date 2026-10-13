@@ -65,7 +65,16 @@ export const timeline = [
 //   links: { github: 'https://github.com/...', demo: 'https://...' },
 // },
 export const projects = [
-  { title: 'Project in progress', summary: "I'm building this one now. Check back soon.", tags: [], result: '', links: {}, placeholder: true },
+  {
+    title: 'Hiring Pipeline Tracker',
+    summary:
+      'For MSE 100 I built an Excel model that follows job candidates through three different hiring paths and works out what each person needs next. I then added a dashboard tab and input checks, reshaped the data, and built a Power BI report on top of it.',
+    tags: ['Excel', 'Power Query', 'Power BI'],
+    result: 'Tracks 29 candidates across 7 stages. Candidate data is fictional (class assignment).',
+    image: '/projects/hiring-dashboard.jpg',
+    imageAlt: 'Power BI dashboard showing candidate counts, pass and fail results at each hiring stage, and a colour-coded progress grid',
+    links: { file: '/projects/kennedy-morris-hiring-tracker.xlsx', fileLabel: 'Download the Excel model' },
+  },
   { title: 'Project in progress', summary: "I'm building this one now. Check back soon.", tags: [], result: '', links: {}, placeholder: true },
   { title: 'Project in progress', summary: "I'm building this one now. Check back soon.", tags: [], result: '', links: {}, placeholder: true },
 ];

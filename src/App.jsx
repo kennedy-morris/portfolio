@@ -76,23 +76,31 @@ function About() {
 function Projects() {
   return (
     <Section id="projects" label="Projects" wide>
-      <p className="note">I'm working on new projects this term. They'll show up here as I finish them.</p>
+      <p className="note">More projects are on the way this term.</p>
       <ol className="project-list">
         {projects.map((p, i) => (
-          <li key={i} className={p.placeholder ? 'placeholder' : ''}>
-            <div className="project-head">
-              <h3>{p.title}</h3>
-              {p.placeholder && <span className="soon">Coming soon</span>}
-            </div>
-            <p>{p.summary}</p>
-            {p.result && <p className="result">{p.result}</p>}
-            {p.tags?.length > 0 && <p className="tags">{p.tags.join(' · ')}</p>}
-            {(p.links?.github || p.links?.demo) && (
-              <p className="project-links">
-                {p.links.github && <a href={p.links.github} target="_blank" rel="noreferrer">Code</a>}
-                {p.links.demo && <a href={p.links.demo} target="_blank" rel="noreferrer">Live site</a>}
-              </p>
+          <li key={i} className={p.placeholder ? 'placeholder' : p.image ? 'featured' : ''}>
+            {p.image && (
+              <a className="project-image" href={p.image} target="_blank" rel="noreferrer">
+                <img src={p.image} alt={p.imageAlt || p.title} loading="lazy" />
+              </a>
             )}
+            <div className="project-text">
+              <div className="project-head">
+                <h3>{p.title}</h3>
+                {p.placeholder && <span className="soon">Coming soon</span>}
+              </div>
+              <p>{p.summary}</p>
+              {p.result && <p className="result">{p.result}</p>}
+              {p.tags?.length > 0 && <p className="tags">{p.tags.join(' · ')}</p>}
+              {(p.links?.github || p.links?.demo || p.links?.file) && (
+                <p className="project-links">
+                  {p.links.github && <a href={p.links.github} target="_blank" rel="noreferrer">Code</a>}
+                  {p.links.demo && <a href={p.links.demo} target="_blank" rel="noreferrer">Live site</a>}
+                  {p.links.file && <a href={p.links.file} download>{p.links.fileLabel || 'Download'}</a>}
+                </p>
+              )}
+            </div>
           </li>
         ))}
       </ol>
