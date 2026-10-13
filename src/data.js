@@ -17,44 +17,35 @@ export const profile = {
 };
 
 export const skills = [
-  { group: 'Data', items: ['SQL', 'Excel', 'Google Sheets', 'Power BI'] },
+  { group: 'Data & Spreadsheets', items: ['SQL', 'Excel', 'Google Sheets', 'Power BI'] },
   { group: 'Programming', items: ['Python', 'C++'] },
-  { group: 'Product & Design', items: ['Figma'] },
+  { group: 'Product & Tools', items: ['Figma', 'Microsoft Office', 'Google Workspace'] },
 ];
 
-// TODO: replace these with your real projects.
-// Each project: title, summary, tags, optional result, links (github / demo).
+export const awards = [
+  'Isabel Farrar Entrance Scholarship',
+  'University of Waterloo Entrance Scholarship (95%+ admission average)',
+];
+
+// Projects — these are placeholders for now.
+// To add a real one, copy this shape and remove `placeholder: true`:
+// {
+//   title: 'Project name',
+//   summary: 'One or two lines on what it does and the problem it solves.',
+//   tags: ['Python', 'SQL'],
+//   result: 'Optional — a number or outcome, e.g. "analyzed 10k rows"',
+//   links: { github: 'https://github.com/...', demo: 'https://...' },
+// },
 export const projects = [
-  {
-    title: 'Your first project',
-    summary: 'One or two lines on what it does and the problem it solves.',
-    tags: ['Python', 'SQL'],
-    result: 'Add a number here — e.g. “analyzed 10k rows”',
-    links: { github: '', demo: '' },
-    placeholder: true,
-  },
-  {
-    title: 'Dashboard project',
-    summary: 'A Power BI or Sheets dashboard would fit perfectly here.',
-    tags: ['Power BI', 'Excel'],
-    result: '',
-    links: { github: '', demo: '' },
-    placeholder: true,
-  },
-  {
-    title: 'Product / design project',
-    summary: 'A Figma prototype or product case study shows off your PM side.',
-    tags: ['Figma'],
-    result: '',
-    links: { github: '', demo: '' },
-    placeholder: true,
-  },
+  { title: 'Project in progress', summary: 'Something new is being built here. Check back soon.', tags: [], result: '', links: {}, placeholder: true },
+  { title: 'Project in progress', summary: 'Something new is being built here. Check back soon.', tags: [], result: '', links: {}, placeholder: true },
+  { title: 'Project in progress', summary: 'Something new is being built here. Check back soon.', tags: [], result: '', links: {}, placeholder: true },
 ];
 
 export const contact = {
-  email: '', // TODO: the email you want public
-  linkedin: '', // TODO: e.g. 'https://www.linkedin.com/in/your-name'
+  email: 'k24morri@uwaterloo.ca',
+  linkedin: 'https://www.linkedin.com/in/kennedy-morris-6b032a432',
   github: 'https://github.com/kennedy-morris',
-  // Put your résumé PDF in the /public folder as resume.pdf, then set this to true.
-  hasResume: false,
+  // The résumé PDF lives at public/resume.pdf — replace that file to update it.
+  hasResume: true,
 };

@@ -1,4 +1,4 @@
-import { profile, skills, projects, contact } from './data.js';
+import { profile, skills, awards, projects, contact } from './data.js';
 
 function Nav() {
   const links = ['About', 'Projects', 'Résumé', 'Contact'];
@@ -49,6 +49,10 @@ function About() {
               <ul>{s.items.map((i) => <li key={i}>{i}</li>)}</ul>
             </div>
           ))}
+          <div className="skill-group">
+            <h3>Awards</h3>
+            <ul className="awards">{awards.map((a) => <li key={a}>🏆 {a}</li>)}</ul>
+          </div>
         </div>
       </div>
     </section>
@@ -65,10 +69,10 @@ function ProjectCard({ p, i }) {
       <h3>{p.title}</h3>
       <p>{p.summary}</p>
       {p.result && <p className="result">{p.result}</p>}
-      <div className="tags">{p.tags.map((t) => <span key={t}>{t}</span>)}</div>
+      {p.tags?.length > 0 && <div className="tags">{p.tags.map((t) => <span key={t}>{t}</span>)}</div>}
       <div className="card-links">
-        {p.links.github && <a href={p.links.github} target="_blank" rel="noreferrer">Code ↗</a>}
-        {p.links.demo && <a href={p.links.demo} target="_blank" rel="noreferrer">Live ↗</a>}
+        {p.links?.github && <a href={p.links.github} target="_blank" rel="noreferrer">Code ↗</a>}
+        {p.links?.demo && <a href={p.links.demo} target="_blank" rel="noreferrer">Live ↗</a>}
       </div>
     </article>
   );
@@ -79,7 +83,7 @@ function Projects() {
     <section id="projects" className="section">
       <h2><span className="num">02</span> Projects</h2>
       <div className="cards">
-        {projects.map((p, i) => <ProjectCard key={p.title} p={p} i={i} />)}
+        {projects.map((p, i) => <ProjectCard key={i} p={p} i={i} />)}
       </div>
     </section>
   );
