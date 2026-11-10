@@ -30,6 +30,12 @@ export const awards = [
 // Newest first.
 export const timeline = [
   {
+    when: 'Nov 2026',
+    title: 'Airport Innovation 2026 Hackathon',
+    org: 'Group 6, Brock Solutions gate-assignment challenge',
+    text: 'Designed and built the operator dashboard for a gate-assignment system at Toronto Pearson, and worked on the overall solution design.',
+  },
+  {
     when: 'Sept 2026',
     title: 'Hiring Process Analysis Tool',
     org: 'MSE 100, University of Waterloo',
@@ -66,6 +72,19 @@ export const timeline = [
 // },
 export const projects = [
   {
+    title: 'HermesTC: Airport Gate Operations Dashboard',
+    summary:
+      'Built at the Airport Innovation 2026 hackathon (Brock Solutions challenge): a system that assigns gates at Toronto Pearson and re-plans around delays, gate outages and emergency diversions. I worked on the overall solution design and built the operator dashboard (live gate map, day timeline, manual overrides). A teammate in Software Engineering built the optimization algorithm.',
+    tags: ['React', 'TypeScript', 'Python', 'Figma'],
+    result: "Our team's algorithm scored 8% better than the challenge's reference solution across 12 disruption scenarios.",
+    image: '/projects/hermestc-schedule.jpg',
+    imageAlt: 'HermesTC full-day schedule: a timeline of flights at each Pearson gate, with a gate outage and a moved flight highlighted',
+    links: {
+      demo: '/projects/hermestc/',
+      github: 'https://github.com/gengangelina-lgtm/Airport-Innovation-2026---Group-6',
+    },
+  },
+  {
     title: 'Hiring Pipeline Tracker',
     summary:
       'For MSE 100 I built an Excel model that follows job candidates through three different hiring paths and works out what each person needs next. I then added a dashboard tab and input checks, reshaped the data, and built a Power BI report on top of it.',
@@ -75,7 +94,6 @@ export const projects = [
     imageAlt: 'Power BI dashboard showing candidate counts, pass and fail results at each hiring stage, and a colour-coded progress grid',
     links: { file: '/projects/kennedy-morris-hiring-tracker.xlsx', fileLabel: 'Download the Excel model' },
   },
-  { title: 'Project in progress', summary: "I'm building this one now. Check back soon.", tags: [], result: '', links: {}, placeholder: true },
   { title: 'Project in progress', summary: "I'm building this one now. Check back soon.", tags: [], result: '', links: {}, placeholder: true },
 ];
 
