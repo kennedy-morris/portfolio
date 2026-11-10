@@ -32,8 +32,8 @@ function TitleBlock() {
   ];
   return (
     <dl className="title-block">
-      {fields.map(([k, v]) => (
-        <div key={k}>
+      {fields.map(([k, v], i) => (
+        <div key={k} style={{ '--i': i }}>
           <dt>{k}</dt>
           <dd>{v}</dd>
         </div>
@@ -80,8 +80,13 @@ function Projects() {
         {real.map((p) => (
           <li key={p.title} className={p.image ? 'sheet with-image' : 'sheet'}>
             {p.image && (
-              <a className="project-image" href={p.image} target="_blank" rel="noreferrer">
-                <img src={p.image} alt={p.imageAlt || p.title} loading="lazy" />
+              <a className={`project-image${p.imageNative ? ' native' : ''}`} href={p.image2x || p.image} target="_blank" rel="noreferrer">
+                <img
+                  src={p.image}
+                  srcSet={p.image2x ? `${p.image} 1x, ${p.image2x} 2x` : undefined}
+                  alt={p.imageAlt || p.title}
+                  loading="lazy"
+                />
               </a>
             )}
             <div className="project-text">

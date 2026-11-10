@@ -77,7 +77,8 @@ export const projects = [
       'Built at the Airport Innovation 2026 hackathon (Brock Solutions challenge): a system that assigns gates at Toronto Pearson and re-plans around delays, gate outages and emergency diversions. I worked on the overall solution design and built the operator dashboard (live gate map, day timeline, manual overrides). A teammate in Software Engineering built the optimization algorithm.',
     tags: ['React', 'TypeScript', 'Python', 'Figma'],
     result: "Our team's algorithm scored 8% better than the challenge's reference solution across 12 disruption scenarios.",
-    image: '/projects/hermestc-schedule.jpg',
+    image: '/projects/hermestc-schedule-1x.jpg',
+    image2x: '/projects/hermestc-schedule.jpg',
     imageAlt: 'HermesTC full-day schedule: a timeline of flights at each Pearson gate, with a gate outage and a moved flight highlighted',
     links: {
       demo: '/projects/hermestc/',
@@ -91,6 +92,8 @@ export const projects = [
     tags: ['Excel', 'Power Query', 'Power BI'],
     result: 'Tracks 29 candidates across 7 stages. Candidate data is fictional (class assignment).',
     image: '/projects/hiring-dashboard.jpg',
+    // Small export: shown at its real size so it isn't stretched. Replace with a bigger export when you can.
+    imageNative: true,
     imageAlt: 'Power BI dashboard showing candidate counts, pass and fail results at each hiring stage, and a colour-coded progress grid',
     links: { file: '/projects/kennedy-morris-hiring-tracker.xlsx', fileLabel: 'Download the Excel model' },
   },

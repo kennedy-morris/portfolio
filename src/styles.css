@@ -16,11 +16,15 @@
   --display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', system-ui, sans-serif;
   --text: 'Public Sans', system-ui, -apple-system, sans-serif;
 
-  --sq: 22px;            /* one grid square */
-  --gutter: clamp(18px, 5vw, 66px);
+  --sq: 1.375rem;            /* one grid square */
+  --gutter: clamp(18px, 5vw, 4rem);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+/* Everything is sized in rem, so the whole page scales up on big monitors instead of floating in the middle. */
+html { font-size: 100%; }
+@media (min-width: 1600px) { html { font-size: 112.5%; } }
+@media (min-width: 2100px) { html { font-size: 128%; } }
 html { scroll-behavior: smooth; }
 body {
   background-color: var(--pad);
@@ -37,7 +41,7 @@ body {
   background-position: -1px -1px;
   color: var(--graphite);
   font-family: var(--text);
-  font-size: 17px;
+  font-size: 1.0625rem;
   line-height: 1.62;
   -webkit-font-smoothing: antialiased;
 }
@@ -52,7 +56,7 @@ strong { color: var(--pine); font-weight: 600; }
 }
 .skip:focus { top: 12px; }
 
-.pad { max-width: 1180px; margin: 0 auto; padding: 0 var(--gutter); }
+.pad { max-width: 74rem; margin: 0 auto; padding: 0 var(--gutter); }
 
 h1, h2, h3 { font-family: var(--display); color: var(--pine); font-weight: 600; }
 
@@ -85,12 +89,24 @@ h1, h2, h3 { font-family: var(--display); color: var(--pine); font-weight: 600; 
   line-height: 1.35; overflow-wrap: anywhere;
 }
 
+/* On load, the title block gets filled in one field at a time, left to right, like writing it by hand. */
+@media (prefers-reduced-motion: no-preference) {
+  .title-block dd {
+    clip-path: inset(0 100% 0 0);
+    animation: fill-in 0.55s cubic-bezier(0.55, 0.1, 0.35, 1) forwards;
+    animation-delay: calc(0.25s + var(--i) * 0.32s);
+  }
+  .title-block dt { opacity: 0; animation: label-in 0.3s ease forwards; animation-delay: calc(0.1s + var(--i) * 0.32s); }
+}
+@keyframes fill-in { to { clip-path: inset(0 0 0 0); } }
+@keyframes label-in { to { opacity: 1; } }
+
 /* Hero */
 .hero { padding: 10px 0 clamp(64px, 9vw, 110px); }
 .hero-body {
   display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
   gap: 24px clamp(32px, 5vw, 72px); align-items: end;
-  margin-top: clamp(48px, 8vw, 96px);
+  margin-top: clamp(3rem, 8vw, 6rem);
 }
 .hero h1 {
   font-size: clamp(3.4rem, 10vw, 7.6rem);
@@ -112,19 +128,19 @@ h1, h2, h3 { font-family: var(--display); color: var(--pine); font-weight: 600; 
 
 /* Sections: heading in a narrow left column, content on the right */
 .section {
-  display: grid; grid-template-columns: 200px minmax(0, 1fr);
+  display: grid; grid-template-columns: 12.5rem minmax(0, 1fr);
   column-gap: clamp(24px, 4vw, 56px);
-  padding: 56px 0;
+  padding: 3.5rem 0;
   border-top: 2px solid var(--pine);
 }
 .section h2 { font-size: 1.9rem; line-height: 1.1; letter-spacing: -0.015em; }
-.section-body { max-width: 680px; }
+.section-body { max-width: 43rem; }
 .section-body > p { margin-bottom: 16px; }
 .section-body h3 { font-size: 1.3rem; line-height: 1.25; letter-spacing: -0.01em; }
 
 /* Projects: white printouts laid on the pad */
 .projects .section-body { max-width: none; }
-.project-list { list-style: none; display: grid; gap: 28px; }
+.project-list { list-style: none; display: grid; gap: 1.75rem; }
 .sheet {
   background: var(--sheet);
   border: 1px solid var(--rule);
@@ -132,9 +148,11 @@ h1, h2, h3 { font-family: var(--display); color: var(--pine); font-weight: 600; 
 }
 .project-image { display: block; background: var(--pad); border-bottom: 1px solid var(--rule); }
 .project-image img { display: block; width: 100%; height: auto; }
+.project-image.native { padding: 18px; }
+.project-image.native img { width: auto; max-width: 100%; margin: 0 auto; border: 1px solid var(--rule); }
 .project-text {
   display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-  gap: 18px 36px; padding: 26px 28px 28px;
+  gap: 1.1rem 2.25rem; padding: 1.6rem 1.75rem 1.75rem;
 }
 .project-text h3 { margin-bottom: 10px; }
 .project-text p { font-size: 0.96rem; }
@@ -150,7 +168,7 @@ h1, h2, h3 { font-family: var(--display); color: var(--pine); font-weight: 600; 
 .currently { padding: 12px 16px; background: var(--sheet); border: 1px dashed var(--rule); }
 .skills { margin: 30px 0 34px; border-top: 1px solid var(--rule); }
 .skills > div {
-  display: grid; grid-template-columns: 130px 1fr; gap: 16px;
+  display: grid; grid-template-columns: 8rem 1fr; gap: 16px;
   padding: 11px 0; border-bottom: 1px solid var(--rule);
 }
 .skills dt { font-weight: 600; color: var(--pine); }
@@ -160,7 +178,7 @@ h1, h2, h3 { font-family: var(--display); color: var(--pine); font-weight: 600; 
 /* Experience: dated entries, newest first */
 .timeline { list-style: none; }
 .timeline li {
-  display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 4px 24px;
+  display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: 4px 24px;
   padding: 18px 0; border-bottom: 1px solid var(--rule);
 }
 .timeline li:first-child { padding-top: 4px; }
@@ -182,6 +200,11 @@ footer {
   font-size: 0.85rem;
 }
 
+@media (max-width: 1024px) {
+  .section { grid-template-columns: 1fr; }
+  .section h2 { margin-bottom: 1.25rem; }
+}
+
 @media (max-width: 900px) {
   .title-block { grid-template-columns: 1fr 1fr; }
   .title-block > div { border-left: none; border-top: 1px solid var(--pine); }
@@ -192,9 +215,9 @@ footer {
 }
 
 @media (max-width: 720px) {
-  body { font-size: 16px; }
-  .section { grid-template-columns: 1fr; padding: 40px 0; }
-  .section h2 { margin-bottom: 18px; font-size: 1.6rem; }
+  body { font-size: 1rem; }
+  .section { padding: 2.5rem 0; }
+  .section h2 { font-size: 1.6rem; }
   .timeline li { grid-template-columns: 1fr; }
   .skills > div { grid-template-columns: 1fr; gap: 0; }
   .project-text { grid-template-columns: 1fr; padding: 20px; }
